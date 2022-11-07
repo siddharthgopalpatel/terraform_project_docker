@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  terraform:
+    build:
+      context: terraform/
+      dockerfile: terraform_dockerfile
+    image: terraformimage
+    container_name: terraform
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    tty: true
+    networks:
+      - t_network
+
+networks:
+  t_network:
+    driver: bridge
+
